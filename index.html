@@ -5,11 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bitcoin Chat - Decentralized Communication</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="components/components.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
-<body>
+<body class="has-ui-components">
     <div class="container">
         <!-- Header -->
         <header class="header">
@@ -202,5 +203,73 @@
             </div>
         </footer>
     </div>
+
+    <!-- Load UI Components -->
+    <script src="components/taskbar.js"></script>
+    <script src="components/devbar.js"></script>
+    <script src="components/dock.js"></script>
+    
+    <!-- Initialize Components -->
+    <script>
+        // Wait for all components to load
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add some demo notifications after 3 seconds
+            setTimeout(() => {
+                if (window.bitcoinTaskbar) {
+                    window.bitcoinTaskbar.addNotification('Welcome to Bitcoin Chat!', 'System');
+                    window.bitcoinTaskbar.addNotification('New BSV block mined #834,567', 'Network');
+                }
+                
+                if (window.bitcoinDock) {
+                    // Simulate some app notifications
+                    window.bitcoinDock.setAppNotification('chat', 3);
+                    window.bitcoinDock.setAppNotification('wallet', 1);
+                }
+            }, 3000);
+
+            // Add keyboard shortcut info
+            console.log('Bitcoin Chat UI Components loaded!');
+            console.log('Keyboard shortcuts:');
+            console.log('- Ctrl+Shift+D: Toggle Developer Bar');
+            console.log('- Ctrl+Shift+C: Clear Developer Console');
+        });
+
+        // Demo: Listen for app launches
+        window.addEventListener('appLaunch', function(event) {
+            console.log('App launched:', event.detail.appId);
+            
+            // Simulate opening different apps
+            switch(event.detail.appId) {
+                case 'chat':
+                    alert('Opening Bitcoin Chat application...');
+                    break;
+                case 'wallet':
+                    alert('Opening BSV Wallet...');
+                    break;
+                case 'explorer':
+                    alert('Opening Block Explorer...');
+                    break;
+                case 'terminal':
+                    alert('Opening Terminal...');
+                    break;
+                default:
+                    alert(`Opening ${event.detail.appName}...`);
+            }
+        });
+
+        // Demo: Update network status periodically
+        setInterval(() => {
+            if (window.bitcoinTaskbar && Math.random() > 0.8) {
+                const messages = [
+                    'Block #834,568 mined',
+                    'Transaction confirmed',
+                    'Network hashrate updated',
+                    'Price update: $52.45'
+                ];
+                const message = messages[Math.floor(Math.random() * messages.length)];
+                window.bitcoinTaskbar.addNotification(message, 'Network');
+            }
+        }, 10000);
+    </script>
 </body>
 </html>

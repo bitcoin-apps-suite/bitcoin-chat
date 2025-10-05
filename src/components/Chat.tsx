@@ -19,6 +19,13 @@ interface User {
   status: 'online' | 'away' | 'offline';
 }
 
+interface Group {
+  id: string;
+  name: string;
+  color: string;
+  userCount: number;
+}
+
 interface ChatProps {
   roomId?: string;
   currentUser?: User;
@@ -31,6 +38,8 @@ const Chat: React.FC<ChatProps> = ({
   const [messages, setMessages] = useState<Message[]>([]);
   const [newMessage, setNewMessage] = useState('');
   const [users, setUsers] = useState<User[]>([]);
+  const [groups, setGroups] = useState<Group[]>([]);
+  const [selectedGroup, setSelectedGroup] = useState<string>('all');
   const [isConnected, setIsConnected] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
@@ -73,16 +82,35 @@ const Chat: React.FC<ChatProps> = ({
       { id: '2', name: 'alice', status: 'online' },
       { id: '3', name: 'bob', status: 'online' },
       { id: '4', name: 'charlie', status: 'away' },
-      { id: '5', name: 'diana', status: 'offline' }
+      { id: '5', name: 'diana', status: 'offline' },
+      { id: '6', name: 'eve', status: 'online' },
+      { id: '7', name: 'frank', status: 'away' },
+      { id: '8', name: 'grace', status: 'online' }
+    ];
+
+    const demoGroups: Group[] = [
+      { id: 'all', name: 'All Users', color: '#ff6500', userCount: demoUsers.length },
+      { id: 'online', name: 'Online', color: '#10b981', userCount: demoUsers.filter(u => u.status === 'online').length },
+      { id: 'developers', name: 'Developers', color: '#3b82f6', userCount: 4 },
+      { id: 'moderators', name: 'Moderators', color: '#8b5cf6', userCount: 2 },
+      { id: 'traders', name: 'Traders', color: '#f59e0b', userCount: 3 }
     ];
 
     setMessages(demoMessages);
     setUsers(demoUsers);
+    setGroups(demoGroups);
     setIsConnected(true);
   }, []);
 
+  // Track previous message count to detect new messages
+  const prevMessageCount = useRef<number>(0);
+  
   useEffect(() => {
-    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+    // Only scroll when new messages are added (not on initial load)
+    if (messages.length > prevMessageCount.current && prevMessageCount.current > 0) {
+      messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+    }
+    prevMessageCount.current = messages.length;
   }, [messages]);
 
   const handleSendMessage = () => {
@@ -145,6 +173,55 @@ const Chat: React.FC<ChatProps> = ({
       </div>
 
       <div className="chat-body">
+        {/* Left Sidebar - User List with Groups */}
+        <div className="users-sidebar-left">
+          <div className="users-sidebar-header">
+            <h3>Users & Groups</h3>
+          </div>
+          
+          {/* Group Selector */}
+          <div className="groups-section">
+            <div className="groups-list">
+              {groups.map((group) => (
+                <button
+                  key={group.id}
+                  onClick={() => setSelectedGroup(group.id)}
+                  className={`group-item ${selectedGroup === group.id ? 'active' : ''}`}
+                  style={{
+                    borderLeft: selectedGroup === group.id ? `3px solid ${group.color}` : '3px solid transparent'
+                  }}
+                >
+                  <div className="group-indicator" style={{ backgroundColor: group.color }}></div>
+                  <span className="group-name">{group.name}</span>
+                  <span className="group-count">{group.userCount}</span>
+                </button>
+              ))}
+            </div>
+          </div>
+
+          {/* Users List */}
+          <div className="users-section">
+            <div className="users-list">
+              {users
+                .filter(user => {
+                  if (selectedGroup === 'all') return true;
+                  if (selectedGroup === 'online') return user.status === 'online';
+                  // For other groups, show all users for demo
+                  return true;
+                })
+                .map((user) => (
+                <div key={user.id} className={`user-item ${user.status}`}>
+                  <div className="user-avatar" style={{ backgroundColor: getUserColor(user.name) }}>
+                    {user.name[0].toUpperCase()}
+                  </div>
+                  <span className="user-name">{user.name}</span>
+                  <div className={`status-indicator ${user.status}`}></div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+
         {/* Messages Area */}
         <div className="messages-area">
           <div className="messages-list">
@@ -176,22 +253,6 @@ const Chat: React.FC<ChatProps> = ({
               </div>
             ))}
             <div ref={messagesEndRef} />
-          </div>
-        </div>
-
-        {/* Sidebar - User List */}
-        <div className="users-sidebar">
-          <h3>Online Users</h3>
-          <div className="users-list">
-            {users.map((user) => (
-              <div key={user.id} className={`user-item ${user.status}`}>
-                <div className="user-avatar" style={{ backgroundColor: getUserColor(user.name) }}>
-                  {user.name[0].toUpperCase()}
-                </div>
-                <span className="user-name">{user.name}</span>
-                <div className={`status-indicator ${user.status}`}></div>
-              </div>
-            ))}
           </div>
         </div>
       </div>

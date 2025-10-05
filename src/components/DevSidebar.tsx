@@ -29,20 +29,15 @@ interface DevSidebarProps {
 }
 
 const DevSidebar: React.FC<DevSidebarProps> = ({ onCollapsedChange }) => {
-  const [isCollapsed, setIsCollapsed] = useState(() => {
-    // Default to collapsed if no preference is saved
-    if (typeof window !== 'undefined') {
-      const saved = localStorage.getItem('devSidebarCollapsed');
-      return saved !== null ? saved === 'true' : true;
-    }
-    return true;
-  });
+  const [isCollapsed, setIsCollapsed] = useState(true); // Always start with true to avoid hydration mismatch
+  const [isHydrated, setIsHydrated] = useState(false);
   const [issueCount, setIssueCount] = useState<number>(0);
   const [onlineUsers, setOnlineUsers] = useState<number>(0);
   const pathname = usePathname();
 
   useEffect(() => {
-    // Load collapsed state from localStorage on mount
+    // Mark as hydrated and load saved state
+    setIsHydrated(true);
     if (typeof window !== 'undefined') {
       const saved = localStorage.getItem('devSidebarCollapsed');
       if (saved !== null) {
@@ -104,7 +99,7 @@ const DevSidebar: React.FC<DevSidebarProps> = ({ onCollapsedChange }) => {
   return (
     <div className={`dev-sidebar ${isCollapsed ? 'collapsed' : ''}`}>
       <div className="dev-sidebar-header">
-        {!isCollapsed && (
+        {isHydrated && !isCollapsed && (
           <div className="dev-sidebar-title">
             <MessageSquare className="dev-sidebar-logo" />
             <span>Chat Hub</span>
@@ -139,7 +134,7 @@ const DevSidebar: React.FC<DevSidebarProps> = ({ onCollapsedChange }) => {
                 title={isCollapsed ? item.label : undefined}
               >
                 {Icon && <Icon size={20} />}
-                {!isCollapsed && (
+                {isHydrated && !isCollapsed && (
                   <>
                     <span className="dev-sidebar-label">{item.label}</span>
                     {item.badge && <span className="dev-sidebar-badge">{item.badge}</span>}
@@ -157,7 +152,7 @@ const DevSidebar: React.FC<DevSidebarProps> = ({ onCollapsedChange }) => {
               title={isCollapsed ? item.label : undefined}
             >
               {Icon && <Icon size={20} />}
-              {!isCollapsed && (
+              {isHydrated && !isCollapsed && (
                 <>
                   <span className="dev-sidebar-label">{item.label}</span>
                   {item.badge && <span className="dev-sidebar-badge">{item.badge}</span>}
@@ -168,7 +163,7 @@ const DevSidebar: React.FC<DevSidebarProps> = ({ onCollapsedChange }) => {
         })}
       </nav>
 
-      {!isCollapsed && (
+      {isHydrated && !isCollapsed && (
         <div className="dev-sidebar-stats">
           <h4>Chat Stats</h4>
           <div className="dev-stat">
@@ -190,7 +185,7 @@ const DevSidebar: React.FC<DevSidebarProps> = ({ onCollapsedChange }) => {
         </div>
       )}
 
-      {!isCollapsed && (
+      {isHydrated && !isCollapsed && (
         <div className="dev-sidebar-footer">
           <div className="dev-sidebar-cta">
             <p>Join the Community</p>

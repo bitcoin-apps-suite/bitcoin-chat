@@ -62,9 +62,7 @@ export default function RootLayout({
         <Providers>
           <BitcoinOSWrapper>
             <DevLayout>
-              <div style={{ minHeight: 'calc(100vh - 68px)', display: 'flex', flexDirection: 'column' }}>
-                {children}
-              </div>
+              {children}
             </DevLayout>
           </BitcoinOSWrapper>
         </Providers>

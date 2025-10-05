@@ -2,7 +2,8 @@
 
 import React, { useState, useEffect } from 'react';
 import DevSidebar from './DevSidebar';
-import Taskbar from './Taskbar';
+import ChatHeader from './ChatHeader';
+import Footer from './Footer';
 import { useBitcoinOS } from '@/lib/utils/useBitcoinOS';
 
 interface DevLayoutProps {
@@ -31,13 +32,27 @@ const DevLayout: React.FC<DevLayoutProps> = ({ children }) => {
   };
 
   return (
-    <>
-      {!isInOS && <Taskbar />}
+    <div style={{ 
+      minHeight: '100vh', 
+      display: 'flex', 
+      flexDirection: 'column',
+      paddingTop: isInOS ? '0' : '72px' // Account for header height
+    }}>
+      {!isInOS && <ChatHeader />}
       {!isInOS && <DevSidebar onCollapsedChange={handleCollapsedChange} />}
-      <div className={`app-container ${isInOS ? '' : (isCollapsed ? 'with-dev-sidebar-collapsed' : 'with-dev-sidebar')}`}>
-        {children}
+      
+      <div className={`app-container ${isInOS ? '' : (isCollapsed ? 'with-dev-sidebar-collapsed' : 'with-dev-sidebar')}`} style={{
+        flex: 1,
+        display: 'flex',
+        flexDirection: 'column',
+        paddingBottom: '0' // Remove bottom padding so footer can sit properly
+      }}>
+        <main style={{ flex: 1 }}>
+          {children}
+        </main>
+        <Footer />
       </div>
-    </>
+    </div>
   );
 };
 

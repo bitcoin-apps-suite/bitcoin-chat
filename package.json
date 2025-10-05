@@ -21,6 +21,7 @@
   "license": "Open BSV License Version 5",
   "dependencies": {
     "@auth/prisma-adapter": "^2.10.0",
+    "@bitcoin-os/bridge": "^2.2.0",
     "@bsv/sdk": "^1.7.6",
     "@handcash/handcash-connect": "^0.8.11",
     "@handcash/handcash-sdk": "^0.0.4",
@@ -30,8 +31,8 @@
     "react": "19.1.0",
     "react-dom": "19.1.0",
     "react-icons": "^5.5.0",
-    "socket.io-client": "^4.8.1",
-    "simple-peer": "^9.11.1"
+    "simple-peer": "^9.11.1",
+    "socket.io-client": "^4.8.1"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",

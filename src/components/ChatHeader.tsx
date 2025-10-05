@@ -72,11 +72,12 @@ const ChatHeader: React.FC<ChatHeaderProps> = ({
     {
       label: 'Bitcoin Chat',
       items: [
-        { label: 'Home', action: () => { window.location.href = '/'; }},
+        { label: 'Chat App', action: () => { window.location.href = '/'; }},
+        { label: 'Landing Page', action: () => { window.location.href = '/landing'; }},
         { divider: true },
         { label: 'About Bitcoin Chat', action: () => alert(
           'Bitcoin Chat v1.0\n\n' +
-          'Decentralized messaging platform on Bitcoin SV\n\n' +
+          'Tokenized chat rooms where conversation creates value\n\n' +
           '© 2025 The Bitcoin Corporation LTD\n' +
           'Registered in England and Wales • Company No. 16735102\n' +
           'All rights reserved\n\n' +
@@ -132,6 +133,9 @@ const ChatHeader: React.FC<ChatHeaderProps> = ({
     {
       label: 'Blockchain',
       items: [
+        { label: 'Token Info', action: () => { window.location.href = '/token'; }},
+        { label: 'Chat Exchange', action: () => { window.location.href = '/exchange'; }},
+        { divider: true },
         { label: 'Send BSV', action: () => console.log('Send BSV') },
         { label: 'Request Payment', action: () => console.log('Request payment') },
         { label: 'Payment History', action: () => console.log('Payment history') },

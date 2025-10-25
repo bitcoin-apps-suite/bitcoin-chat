@@ -165,20 +165,22 @@ const Chat: React.FC<ChatProps> = ({
     <>
       {/* Main App Header */}
       <div style={{
-        padding: '16px 0',
+        position: 'fixed',
+        top: '40px', // Position right below PocBar
+        left: '260px', // Account for DevSidebar
+        right: tickerSidebarCollapsed ? '60px' : '280px',
+        padding: '12px 24px',
         borderBottom: '1px solid rgba(100, 200, 255, 0.3)',
         background: 'linear-gradient(135deg, rgba(10, 20, 50, 0.8) 0%, rgba(20, 30, 60, 0.6) 100%)',
         backdropFilter: 'blur(20px)',
-        marginLeft: '260px',
-        marginRight: tickerSidebarCollapsed ? '60px' : '280px',
-        transition: 'margin-right 0.3s ease'
+        transition: 'right 0.3s ease',
+        zIndex: 1000
       }}>
         <div style={{
           display: 'flex',
           alignItems: 'center',
           gap: '8px',
-          marginBottom: '4px',
-          paddingLeft: '24px'
+          marginBottom: '4px'
         }}>
           <div style={{
             width: '28px',
@@ -212,14 +214,13 @@ const Chat: React.FC<ChatProps> = ({
           color: 'rgba(255, 255, 255, 0.7)',
           margin: '0',
           letterSpacing: '0.3px',
-          paddingLeft: '24px',
           fontWeight: '300'
         }}>
           Paid, tokenised shareholder meetings. Trade access, value and community on Bitcoin
         </p>
       </div>
 
-      <div className="chat-container">
+      <div className="chat-container" style={{ marginTop: '80px' }}> {/* Account for fixed header height */}
       {/* Chat Header */}
       <div className="chat-header">
         <div className="chat-room-info">

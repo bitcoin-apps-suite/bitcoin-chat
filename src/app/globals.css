@@ -568,7 +568,7 @@ a {
 }
 
 /* Responsive adjustments */
-@media (max-width: 768px) {
+@media (max-width: 480px) {
   .users-sidebar-left {
     display: none;
   }

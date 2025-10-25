@@ -39,7 +39,7 @@ const DevLayout: React.FC<DevLayoutProps> = ({ children }) => {
       paddingTop: isInOS ? '0' : '72px' // Account for header height
     }}>
       {!isInOS && <ChatHeader />}
-      {!isInOS && <DevSidebar onCollapsedChange={handleCollapsedChange} />}
+      <DevSidebar onCollapsedChange={handleCollapsedChange} />
       
       <div className={`app-container ${isInOS ? '' : (isCollapsed ? 'with-dev-sidebar-collapsed' : 'with-dev-sidebar')}`} style={{
         flex: 1,

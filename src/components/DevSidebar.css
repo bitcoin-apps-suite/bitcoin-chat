@@ -5,8 +5,8 @@
   top: 68px; /* Below POC banner (40px) and taskbar (28px) */
   bottom: 0;
   width: 260px;
-  background: linear-gradient(135deg, rgba(18, 8, 0, 0.98) 0%, rgba(31, 15, 0, 0.98) 100%);
-  border-right: 1px solid rgba(255, 101, 0, 0.15);
+  background: linear-gradient(135deg, rgba(10, 20, 50, 0.98) 0%, rgba(20, 30, 60, 0.98) 100%);
+  border-right: 1px solid rgba(100, 200, 255, 0.3);
   display: flex;
   flex-direction: column;
   transition: width 0.3s ease;
@@ -24,28 +24,28 @@
   align-items: center;
   justify-content: space-between;
   padding: 16px;
-  border-bottom: 1px solid rgba(255, 101, 0, 0.15);
-  background: rgba(30, 10, 0, 0.3);
+  border-bottom: 1px solid rgba(100, 200, 255, 0.3);
+  background: rgba(20, 30, 60, 0.3);
 }
 
 .dev-sidebar-title {
   display: flex;
   align-items: center;
   gap: 12px;
-  color: #ff6500; /* Bitcoin Chat orange theme */
+  color: #64c8ff; /* Bitcoin Chat blue theme */
   font-weight: 600;
   font-size: 16px;
 }
 
 .dev-sidebar-logo {
-  color: #ff6500;
+  color: #64c8ff;
   flex-shrink: 0;
 }
 
 .dev-sidebar-toggle {
   background: transparent;
   border: none;
-  color: #ff6500;
+  color: #64c8ff;
   cursor: pointer;
   padding: 4px;
   display: flex;
@@ -56,7 +56,7 @@
 }
 
 .dev-sidebar-toggle:hover {
-  background: rgba(255, 101, 0, 0.1);
+  background: rgba(100, 200, 255, 0.1);
   transform: scale(1.1);
 }
 
@@ -81,14 +81,14 @@
 }
 
 .dev-sidebar-item:hover {
-  background: rgba(255, 101, 0, 0.1);
-  color: #ff6500;
+  background: rgba(100, 200, 255, 0.1);
+  color: #64c8ff;
   transform: translateX(2px);
 }
 
 .dev-sidebar-item.active {
-  background: linear-gradient(135deg, rgba(255, 101, 0, 0.2), rgba(255, 68, 0, 0.2));
-  color: #ff6500;
+  background: linear-gradient(135deg, rgba(100, 200, 255, 0.2), rgba(255, 68, 0, 0.2));
+  color: #64c8ff;
   font-weight: 600;
 }
 
@@ -100,7 +100,7 @@
   transform: translateY(-50%);
   width: 3px;
   height: 70%;
-  background: #ff6500;
+  background: #64c8ff;
   border-radius: 0 2px 2px 0;
 }
 
@@ -109,7 +109,7 @@
 }
 
 .dev-sidebar-badge {
-  background: linear-gradient(135deg, #ff6500, #ff4400);
+  background: linear-gradient(135deg, #64c8ff, #3b82f6);
   color: #ffffff;
   font-size: 10px;
   font-weight: 700;
@@ -120,18 +120,18 @@
 
 .dev-sidebar-divider {
   height: 1px;
-  background: rgba(255, 101, 0, 0.1);
+  background: rgba(100, 200, 255, 0.1);
   margin: 12px 0;
 }
 
 .dev-sidebar-stats {
   padding: 16px;
-  border-top: 1px solid rgba(255, 101, 0, 0.15);
+  border-top: 1px solid rgba(100, 200, 255, 0.15);
   background: rgba(0, 0, 0, 0.2);
 }
 
 .dev-sidebar-stats h4 {
-  color: #ff6500;
+  color: #64c8ff;
   font-size: 12px;
   text-transform: uppercase;
   margin: 0 0 12px 0;
@@ -151,25 +151,25 @@
 }
 
 .dev-stat-value {
-  color: #ff6500;
+  color: #64c8ff;
   font-weight: 600;
 }
 
 .dev-sidebar-footer {
   padding: 16px;
-  border-top: 1px solid rgba(255, 101, 0, 0.15);
+  border-top: 1px solid rgba(100, 200, 255, 0.15);
 }
 
 .dev-sidebar-cta {
-  background: linear-gradient(135deg, rgba(255, 101, 0, 0.1), rgba(255, 68, 0, 0.1));
-  border: 1px solid rgba(255, 101, 0, 0.3);
+  background: linear-gradient(135deg, rgba(100, 200, 255, 0.1), rgba(255, 68, 0, 0.1));
+  border: 1px solid rgba(100, 200, 255, 0.3);
   border-radius: 8px;
   padding: 12px;
   text-align: center;
 }
 
 .dev-sidebar-cta p {
-  color: #ff6500;
+  color: #64c8ff;
   font-size: 12px;
   margin: 0 0 8px 0;
   text-transform: uppercase;
@@ -178,7 +178,7 @@
 
 .dev-sidebar-cta-button {
   display: inline-block;
-  background: linear-gradient(135deg, #ff6500, #ff4400);
+  background: linear-gradient(135deg, #64c8ff, #3b82f6);
   color: #ffffff;
   padding: 6px 16px;
   border-radius: 4px;
@@ -190,7 +190,7 @@
 
 .dev-sidebar-cta-button:hover {
   transform: scale(1.05);
-  box-shadow: 0 4px 12px rgba(255, 101, 0, 0.3);
+  box-shadow: 0 4px 12px rgba(100, 200, 255, 0.3);
 }
 
 /* Collapsed state specific styles */
@@ -217,17 +217,17 @@
 }
 
 .dev-sidebar-nav::-webkit-scrollbar-track {
-  background: rgba(255, 101, 0, 0.05);
+  background: rgba(100, 200, 255, 0.05);
   border-radius: 3px;
 }
 
 .dev-sidebar-nav::-webkit-scrollbar-thumb {
-  background: rgba(255, 101, 0, 0.3);
+  background: rgba(100, 200, 255, 0.3);
   border-radius: 3px;
 }
 
 .dev-sidebar-nav::-webkit-scrollbar-thumb:hover {
-  background: rgba(255, 101, 0, 0.5);
+  background: rgba(100, 200, 255, 0.5);
 }
 
 /* Responsive adjustments */

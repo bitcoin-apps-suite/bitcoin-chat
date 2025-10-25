@@ -192,7 +192,7 @@ const ChatContracts: React.FC<ChatContractsProps> = ({
               padding: '12px 8px',
               background: activeTab === tab ? 'rgba(100, 200, 255, 0.15)' : 'transparent',
               border: 'none',
-              color: activeTab === tab ? '#64c8ff' : 'rgba(255, 255, 255, 0.7),'
+              color: activeTab === tab ? '#64c8ff' : 'rgba(255, 255, 255, 0.7)',
               fontSize: '11px',
               fontWeight: '600',
               textTransform: 'uppercase',

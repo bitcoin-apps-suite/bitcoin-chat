@@ -590,6 +590,7 @@ class Dock {
     updatePosition() {
         // Recalculate dock position based on screen size and position setting
         this.element.style.position = 'fixed';
+        this.element.style.width = '380px';
         
         switch (this.position) {
             case 'bottom':

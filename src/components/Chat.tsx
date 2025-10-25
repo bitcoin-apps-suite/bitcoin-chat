@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect, useRef } from 'react';
 import { Send, Paperclip, Phone, Video, Users, Settings } from 'lucide-react';
+import ChatContracts from './ChatContracts';
 
 interface Message {
   id: string;
@@ -254,35 +255,51 @@ const Chat: React.FC<ChatProps> = ({
             ))}
             <div ref={messagesEndRef} />
           </div>
+          
+          {/* Message Input */}
+          <div className="message-input-area">
+            <div className="message-input-container">
+              <button className="attach-btn" title="Attach File">
+                <Paperclip size={18} />
+              </button>
+              <textarea
+                value={newMessage}
+                onChange={(e) => setNewMessage(e.target.value)}
+                onKeyPress={handleKeyPress}
+                placeholder={`Message #${roomId}...`}
+                className="message-input"
+                rows={1}
+              />
+              <button 
+                onClick={handleSendMessage}
+                className="send-btn"
+                disabled={!newMessage.trim()}
+              >
+                <Send size={18} />
+              </button>
+            </div>
+            <div className="connection-status">
+              <div className={`status-dot ${isConnected ? 'connected' : 'disconnected'}`}></div>
+              <span>{isConnected ? 'Connected to P2P network' : 'Connecting...'}</span>
+            </div>
+          </div>
         </div>
-      </div>
-
-      {/* Message Input */}
-      <div className="message-input-area">
-        <div className="message-input-container">
-          <button className="attach-btn" title="Attach File">
-            <Paperclip size={18} />
-          </button>
-          <textarea
-            value={newMessage}
-            onChange={(e) => setNewMessage(e.target.value)}
-            onKeyPress={handleKeyPress}
-            placeholder={`Message #${roomId}...`}
-            className="message-input"
-            rows={1}
-          />
-          <button 
-            onClick={handleSendMessage}
-            className="send-btn"
-            disabled={!newMessage.trim()}
-          >
-            <Send size={18} />
-          </button>
-        </div>
-        <div className="connection-status">
-          <div className={`status-dot ${isConnected ? 'connected' : 'disconnected'}`}></div>
-          <span>{isConnected ? 'Connected to P2P network' : 'Connecting...'}</span>
-        </div>
+        
+        {/* Right Sidebar - Chat Contracts */}
+        <ChatContracts 
+          onJoinChat={(chatId) => {
+            console.log('Joining chat:', chatId);
+            // TODO: Implement chat joining logic
+          }}
+          onImportShare={(share) => {
+            console.log('Importing share:', share);
+            // TODO: Implement share import logic
+          }}
+          onCreateChat={(topic) => {
+            console.log('Creating chat for topic:', topic);
+            // TODO: Implement chat creation logic
+          }}
+        />
       </div>
     </div>
   );

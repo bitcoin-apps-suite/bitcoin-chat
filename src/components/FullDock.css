@@ -1,9 +1,8 @@
-/* macOS-style Dock - Bitcoin Chat Theme */
+/* macOS-style Dock - bChat theme */
 .bitcoin-dock {
   position: fixed;
   bottom: 20px;
   left: 50%;
-  width: 450px;
   transform: translateX(-50%);
   z-index: 999998;
   padding: 8px;
@@ -15,6 +14,40 @@
   box-shadow: 
     0 20px 50px rgba(0, 0, 0, 0.5),
     0 0 0 0.5px rgba(255, 101, 0, 0.1) inset;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Minimal state */
+.bitcoin-dock.minimal {
+  bottom: 0;
+  padding: 4px 8px;
+  border-radius: 0;
+  border: none;
+  border-top: 1px solid rgba(255, 101, 0, 0.2);
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: none;
+  width: 100%;
+  left: 0;
+  transform: none;
+}
+
+/* Full state */
+.bitcoin-dock.full {
+  bottom: 20px;
+  padding: 8px;
+  border-radius: 20px;
+  border: 1px solid rgba(255, 101, 0, 0.2);
+  background: rgba(22, 11, 0, 0.75);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  box-shadow: 
+    0 20px 50px rgba(0, 0, 0, 0.5),
+    0 0 0 0.5px rgba(255, 101, 0, 0.1) inset;
+  left: 50%;
+  transform: translateX(-50%);
+  width: auto;
 }
 
 .dock-container {
@@ -24,12 +57,31 @@
   height: 64px;
   padding: 0 8px;
   width: 100%;
+  min-width: 1100px;
+  transition: all 0.3s ease;
+}
+
+.bitcoin-dock.minimal .dock-container {
+  height: 32px;
+  padding: 0 12px;
+  min-width: auto;
 }
 
 .dock-apps {
   display: flex;
   align-items: center;
   gap: 8px;
+  overflow-x: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.dock-apps::-webkit-scrollbar {
+  display: none;
+}
+
+.bitcoin-dock.minimal .dock-apps {
+  gap: 6px;
 }
 
 .dock-app {
@@ -45,6 +97,17 @@
   cursor: pointer;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   padding: 0;
+  flex-shrink: 0;
+}
+
+.bitcoin-dock.minimal .dock-app {
+  width: 20px;
+  height: 20px;
+  border-radius: 3px;
+}
+
+.bitcoin-dock.minimal .dock-app:hover:not(.disabled) {
+  transform: scale(1.1);
 }
 
 .dock-app:hover:not(.disabled) {
@@ -104,6 +167,11 @@
   transition: filter 0.2s ease;
 }
 
+.bitcoin-dock.minimal .dock-app-icon {
+  width: 14px;
+  height: 14px;
+}
+
 .dock-app:hover:not(.disabled) .dock-app-icon {
   filter: brightness(1.2) drop-shadow(0 0 8px rgba(255, 101, 0, 0.3));
 }
@@ -137,6 +205,18 @@
   }
 }
 
+/* Expansion indicator */
+.dock-expansion-indicator {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 12px;
+  font-weight: bold;
+  margin-left: 4px;
+  user-select: none;
+}
+
 /* Dock status section */
 .dock-status {
   display: flex;
@@ -145,6 +225,16 @@
   padding: 0 8px;
   font-size: 13px;
   color: rgba(255, 255, 255, 0.8);
+}
+
+.bitcoin-dock.minimal .dock-status {
+  gap: 8px;
+  padding: 0 4px;
+}
+
+/* Hide some status buttons in minimal mode */
+.bitcoin-dock.minimal .status-button:nth-child(n+4):nth-child(-n+8) {
+  display: none;
 }
 
 .dock-divider {
@@ -176,12 +266,17 @@
   transition: color 0.2s ease;
 }
 
+.bitcoin-dock.minimal .status-icon {
+  width: 12px;
+  height: 12px;
+}
+
 .status-button:hover .status-icon {
   color: rgba(255, 255, 255, 0.9);
 }
 
 .status-icon.connected {
-  color: #ff6500;
+  color: #10b981;
 }
 
 .status-time {
@@ -189,6 +284,8 @@
   align-items: center;
   gap: 6px;
   cursor: default;
+  min-width: 120px;
+  justify-content: flex-end;
 }
 
 .status-time span {
@@ -207,6 +304,7 @@
   .dock-container {
     height: 56px;
     padding: 0 6px;
+    min-width: auto;
   }
   
   .dock-apps {

@@ -2,7 +2,7 @@
 
 import React from 'react';
 import PocBar from './PocBar';
-import Dock from './Dock';
+import MinimalDock from './MinimalDock';
 import { useBitcoinOS } from '@/lib/utils/useBitcoinOS';
 
 interface BitcoinOSWrapperProps {
@@ -16,7 +16,7 @@ const BitcoinOSWrapper: React.FC<BitcoinOSWrapperProps> = ({ children }) => {
     <>
       {!isInOS && <PocBar />}
       {children}
-      {!isInOS && <Dock />}
+      {!isInOS && <MinimalDock currentApp="bitcoin-chat" />}
     </>
   );
 };

@@ -21,7 +21,17 @@ yarn-debug.log*
 yarn-error.log*
 
 # local env files
+.env*
 .env*.local
+
+# Screenshots
+Screenshot*
+*screenshot*
+*.png
+*.jpg
+*.jpeg
+*.gif
+*.webp
 
 # vercel
 .vercel
@@ -30,3 +40,11 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 node_modules
+
+# Environment files - NEVER commit these!
+.env
+.env.*
+.env*
+*.env
+.env copy.local
+.env.deployment

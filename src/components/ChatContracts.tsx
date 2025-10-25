@@ -134,33 +134,40 @@ interface ChatContractsProps {
   onJoinChat?: (chatId: string) => void;
   onImportShare?: (share: BitcoinWriterShare) => void;
   onCreateChat?: (topic: string) => void;
+  tickerSidebarOpen?: boolean;
 }
 
 const ChatContracts: React.FC<ChatContractsProps> = ({
   onJoinChat,
   onImportShare,
-  onCreateChat
+  onCreateChat,
+  tickerSidebarOpen = false
 }) => {
   const [activeTab, setActiveTab] = useState<'chats' | 'import' | 'trending'>('chats');
 
   return (
     <div style={{
       width: '320px',
-      background: 'rgba(0, 0, 0, 0.3)',
-      borderLeft: '1px solid rgba(255, 101, 0, 0.2)',
+      background: 'linear-gradient(135deg, rgba(10, 20, 50, 0.9) 0%, rgba(20, 30, 60, 0.8) 100%)',
+      borderLeft: '1px solid rgba(100, 200, 255, 0.3)',
       display: 'flex',
       flexDirection: 'column',
       height: '100%',
-      overflow: 'hidden'
+      overflow: 'hidden',
+      position: 'relative',
+      zIndex: 90,
+      backdropFilter: 'blur(10px)',
+      transform: tickerSidebarOpen ? 'translateX(-280px)' : 'translateX(0)',
+      transition: 'transform 0.3s ease'
     }}>
       {/* Header */}
       <div style={{
         padding: '16px 20px 12px',
-        borderBottom: '1px solid rgba(255, 101, 0, 0.2)',
-        background: 'rgba(0, 0, 0, 0.2)'
+        borderBottom: '1px solid rgba(100, 200, 255, 0.3)',
+        background: 'linear-gradient(135deg, rgba(20, 30, 60, 0.8) 0%, rgba(30, 40, 70, 0.6) 100%)'
       }}>
         <h3 style={{
-          color: '#ff6500',
+          color: '#64c8ff',
           fontSize: '14px',
           fontWeight: '600',
           margin: '0',
@@ -174,7 +181,7 @@ const ChatContracts: React.FC<ChatContractsProps> = ({
       {/* Tabs */}
       <div style={{
         display: 'flex',
-        borderBottom: '1px solid rgba(255, 101, 0, 0.1)'
+        borderBottom: '1px solid rgba(100, 200, 255, 0.2)'
       }}>
         {(['chats', 'import', 'trending'] as const).map((tab) => (
           <button
@@ -183,9 +190,9 @@ const ChatContracts: React.FC<ChatContractsProps> = ({
             style={{
               flex: 1,
               padding: '12px 8px',
-              background: activeTab === tab ? 'rgba(255, 101, 0, 0.1)' : 'transparent',
+              background: activeTab === tab ? 'rgba(100, 200, 255, 0.15)' : 'transparent',
               border: 'none',
-              color: activeTab === tab ? '#ff6500' : 'rgba(255, 255, 255, 0.7)',
+              color: activeTab === tab ? '#64c8ff' : 'rgba(255, 255, 255, 0.7),'
               fontSize: '11px',
               fontWeight: '600',
               textTransform: 'uppercase',
@@ -218,8 +225,8 @@ const ChatContracts: React.FC<ChatContractsProps> = ({
               <div
                 key={chat.id}
                 style={{
-                  background: 'rgba(255, 101, 0, 0.05)',
-                  border: '1px solid rgba(255, 101, 0, 0.2)',
+                  background: 'rgba(100, 200, 255, 0.05)',
+                  border: '1px solid rgba(100, 200, 255, 0.2)',
                   borderRadius: '8px',
                   padding: '12px',
                   marginBottom: '12px',
@@ -228,12 +235,12 @@ const ChatContracts: React.FC<ChatContractsProps> = ({
                 }}
                 onClick={() => onJoinChat?.(chat.id)}
                 onMouseEnter={(e) => {
-                  e.currentTarget.style.background = 'rgba(255, 101, 0, 0.1)';
-                  e.currentTarget.style.borderColor = 'rgba(255, 101, 0, 0.4)';
+                  e.currentTarget.style.background = 'rgba(100, 200, 255, 0.1)';
+                  e.currentTarget.style.borderColor = 'rgba(100, 200, 255, 0.4)';
                 }}
                 onMouseLeave={(e) => {
-                  e.currentTarget.style.background = 'rgba(255, 101, 0, 0.05)';
-                  e.currentTarget.style.borderColor = 'rgba(255, 101, 0, 0.2)';
+                  e.currentTarget.style.background = 'rgba(100, 200, 255, 0.05)';
+                  e.currentTarget.style.borderColor = 'rgba(100, 200, 255, 0.2)';
                 }}
               >
                 <div style={{
@@ -246,7 +253,7 @@ const ChatContracts: React.FC<ChatContractsProps> = ({
                     height: '8px',
                     borderRadius: '50%',
                     background: chat.category === 'imported' ? '#3b82f6' : 
-                               chat.category === 'trending' ? '#10b981' : '#ff6500',
+                               chat.category === 'trending' ? '#10b981' : '#64c8ff',
                     marginRight: '8px'
                   }} />
                   <div style={{

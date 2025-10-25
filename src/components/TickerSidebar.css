@@ -1,8 +1,8 @@
 /* Ticker Sidebar Styles */
 .ticker-sidebar {
   width: 280px; /* Reduced from 320px */
-  background: rgba(13, 13, 13, 0.95);
-  border-left: 2px solid #333;
+  background: linear-gradient(135deg, rgba(10, 20, 50, 0.95) 0%, rgba(20, 30, 60, 0.9) 100%);
+  border-left: 2px solid rgba(100, 200, 255, 0.4);
   display: flex;
   flex-direction: column;
   height: calc(100vh - 96px); /* Account for taskbar and dock */
@@ -13,16 +13,17 @@
   z-index: 100; /* Higher z-index to ensure visibility */
   padding-right: 10px;
   transition: width 0.3s ease;
-  backdrop-filter: blur(10px);
+  backdrop-filter: blur(20px);
+  box-shadow: -4px 0 20px rgba(0, 0, 0, 0.3);
 }
 
 .ticker-header {
   padding: 12px;
-  border-bottom: 1px solid #222;
+  border-bottom: 1px solid rgba(100, 200, 255, 0.2);
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: #1a1a1a;
+  background: linear-gradient(135deg, rgba(20, 30, 60, 0.8) 0%, rgba(30, 40, 70, 0.6) 100%);
 }
 
 .ticker-header-controls {
@@ -33,8 +34,8 @@
 
 .ticker-toggle {
   background: none;
-  border: 1px solid #666;
-  color: #666;
+  border: 1px solid rgba(100, 200, 255, 0.4);
+  color: rgba(100, 200, 255, 0.8);
   padding: 4px 8px;
   border-radius: 4px;
   cursor: pointer;
@@ -43,9 +44,9 @@
 }
 
 .ticker-toggle:hover {
-  background: #666;
-  color: #fff;
-  border-color: #666;
+  background: rgba(100, 200, 255, 0.2);
+  color: #64c8ff;
+  border-color: rgba(100, 200, 255, 0.6);
 }
 
 /* Collapsed state */
@@ -66,7 +67,7 @@
 .ticker-header h3 {
   font-size: 14px;
   font-weight: 600;
-  color: #ccc;
+  color: #64c8ff;
   margin: 0;
   letter-spacing: 0.5px;
 }
@@ -133,8 +134,8 @@
 }
 
 .ticker-item {
-  background: #1a1a1a;
-  border: 1px solid #333;
+  background: linear-gradient(135deg, rgba(20, 30, 60, 0.6) 0%, rgba(30, 40, 70, 0.4) 100%);
+  border: 1px solid rgba(100, 200, 255, 0.2);
   border-radius: 8px;
   padding: 12px;
   margin-bottom: 10px;
@@ -144,9 +145,9 @@
 
 /* Special tokens (BOS, BSV, Author) */
 .ticker-item.special {
-  background: linear-gradient(135deg, #2a2a2a 0%, #333 100%);
-  border: 2px solid #555;
-  box-shadow: 0 4px 12px rgba(85, 85, 85, 0.3);
+  background: linear-gradient(135deg, rgba(100, 200, 255, 0.15) 0%, rgba(150, 150, 255, 0.1) 100%);
+  border: 2px solid rgba(100, 200, 255, 0.4);
+  box-shadow: 0 4px 12px rgba(100, 200, 255, 0.2);
 }
 
 .ticker-item.special::before {
@@ -187,7 +188,7 @@
 .ticker-symbol {
   font-size: 14px;
   font-weight: bold;
-  color: #ccc;
+  color: #64c8ff;
 }
 
 .ticker-change {
@@ -240,7 +241,7 @@
   background: #1a1a1a;
   padding: 2px 4px;
   border-radius: 3px;
-  border: 1px solid #333;
+  border: 1px solid rgba(100, 200, 255, 0.25);
 }
 
 .ticker-stats {
@@ -298,7 +299,7 @@
 }
 
 .ticker-list::-webkit-scrollbar-thumb {
-  background: #333;
+  background: rgba(100, 200, 255, 0.4);
   border-radius: 2px;
 }
 

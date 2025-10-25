@@ -42,6 +42,7 @@ const Chat: React.FC<ChatProps> = ({
   const [groups, setGroups] = useState<Group[]>([]);
   const [selectedGroup, setSelectedGroup] = useState<string>('all');
   const [isConnected, setIsConnected] = useState(false);
+  const [tickerSidebarCollapsed, setTickerSidebarCollapsed] = useState(true);
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
   // Initialize with demo messages
@@ -114,6 +115,18 @@ const Chat: React.FC<ChatProps> = ({
     prevMessageCount.current = messages.length;
   }, [messages]);
 
+  // Listen for ticker sidebar toggle events
+  useEffect(() => {
+    const handleTickerToggle = (event: CustomEvent) => {
+      setTickerSidebarCollapsed(event.detail);
+    };
+
+    window.addEventListener('tickerToggled', handleTickerToggle as EventListener);
+    return () => {
+      window.removeEventListener('tickerToggled', handleTickerToggle as EventListener);
+    };
+  }, []);
+
   const handleSendMessage = () => {
     if (!newMessage.trim()) return;
 
@@ -141,7 +154,7 @@ const Chat: React.FC<ChatProps> = ({
   };
 
   const getUserColor = (username: string) => {
-    const colors = ['#ff6500', '#3b82f6', '#10b981', '#f59e0b', '#8b5cf6', '#ef4444'];
+    const colors = ['#8B5FBF', '#6B46C1', '#7C3AED', '#8B5A2B', '#5B21B6', '#6366F1'];
     const hash = username.split('').reduce((a, b) => {
       a = ((a << 5) - a) + b.charCodeAt(0);
       return a & a;
@@ -287,6 +300,7 @@ const Chat: React.FC<ChatProps> = ({
         
         {/* Right Sidebar - Chat Contracts */}
         <ChatContracts 
+          tickerSidebarOpen={!tickerSidebarCollapsed}
           onJoinChat={(chatId) => {
             console.log('Joining chat:', chatId);
             // TODO: Implement chat joining logic

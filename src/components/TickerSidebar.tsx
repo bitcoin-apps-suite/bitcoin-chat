@@ -19,11 +19,13 @@ interface TickerSidebarProps {
     symbol: string;
     name: string;
   };
+  onCollapsedChange?: (collapsed: boolean) => void;
 }
 
 const TickerSidebar: React.FC<TickerSidebarProps> = ({
   userHandle,
-  currentJobToken
+  currentJobToken,
+  onCollapsedChange
 }) => {
   const [prices, setPrices] = useState<TokenPrice[]>([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -194,6 +196,7 @@ const TickerSidebar: React.FC<TickerSidebarProps> = ({
             onClick={() => {
               const newCollapsed = !isCollapsed;
               setIsCollapsed(newCollapsed);
+              onCollapsedChange?.(newCollapsed);
               // Emit event for desktop icons to listen to
               window.dispatchEvent(new CustomEvent('tickerToggled', { detail: newCollapsed }));
             }}

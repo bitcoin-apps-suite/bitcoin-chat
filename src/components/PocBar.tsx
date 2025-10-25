@@ -7,7 +7,7 @@ interface PocBarProps {
   color?: string;
 }
 
-export default function PocBar({ color = '#ff6500' }: PocBarProps) {
+export default function PocBar({ color = '#64c8ff' }: PocBarProps) {
   return (
     <div 
       className="poc-banner"
@@ -17,18 +17,19 @@ export default function PocBar({ color = '#ff6500' }: PocBarProps) {
         left: 0,
         right: 0,
         height: '40px',
-        backgroundColor: color,
+        background: 'linear-gradient(135deg, #64c8ff 0%, #8B5FBF 50%, #6B46C1 100%)',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'flex-start', // Left aligned
         zIndex: 9999,
         fontSize: '13px',
         fontWeight: '500',
-        color: 'black',
+        color: 'white',
         letterSpacing: '0.5px',
-        boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
-        borderBottom: '1px solid rgba(0,0,0,0.2)',
+        boxShadow: '0 4px 12px rgba(0,0,0,0.3)',
+        borderBottom: '1px solid rgba(100, 200, 255, 0.3)',
         padding: '0 12px',
+        backdropFilter: 'blur(10px)',
       }}
     >
       <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
@@ -39,10 +40,11 @@ export default function PocBar({ color = '#ff6500' }: PocBarProps) {
           <Link 
             href="/features" 
             style={{ 
-              color: 'black', 
+              color: 'rgba(255, 255, 255, 0.9)', 
               textDecoration: 'underline',
-              opacity: 0.9,
-              fontWeight: '400'
+              textDecorationColor: 'rgba(255, 255, 255, 0.6)',
+              fontWeight: '400',
+              transition: 'all 0.2s ease'
             }}
           >
             Features
@@ -50,10 +52,11 @@ export default function PocBar({ color = '#ff6500' }: PocBarProps) {
           <Link 
             href="/docs" 
             style={{ 
-              color: 'black', 
+              color: 'rgba(255, 255, 255, 0.9)', 
               textDecoration: 'underline',
-              opacity: 0.9,
-              fontWeight: '400'
+              textDecorationColor: 'rgba(255, 255, 255, 0.6)',
+              fontWeight: '400',
+              transition: 'all 0.2s ease'
             }}
           >
             Docs
@@ -63,10 +66,11 @@ export default function PocBar({ color = '#ff6500' }: PocBarProps) {
             target="_blank"
             rel="noopener noreferrer"
             style={{ 
-              color: 'black', 
+              color: 'rgba(255, 255, 255, 0.9)', 
               textDecoration: 'underline',
-              opacity: 0.9,
-              fontWeight: '400'
+              textDecorationColor: 'rgba(255, 255, 255, 0.6)',
+              fontWeight: '400',
+              transition: 'all 0.2s ease'
             }}
           >
             GitHub

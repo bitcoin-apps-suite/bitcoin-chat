@@ -23,6 +23,7 @@ const MinimalDock: React.FC<MinimalDockProps> = ({ currentApp = 'bitcoin-os' }) 
   const [mounted, setMounted] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
   const [expandTimeout, setExpandTimeout] = useState<NodeJS.Timeout | null>(null);
+  const [tickerCollapsed, setTickerCollapsed] = useState(true);
 
   useEffect(() => {
     setMounted(true);
@@ -158,7 +159,10 @@ const MinimalDock: React.FC<MinimalDockProps> = ({ currentApp = 'bitcoin-os' }) 
   return (
     <>
       {/* TickerSidebar from bitcoin-OS */}
-      <TickerSidebar userHandle="$User" />
+      <TickerSidebar 
+        userHandle="$User" 
+        onCollapsedChange={setTickerCollapsed}
+      />
       <div className="minimal-dock" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
         <div className={`minimal-dock-container ${isHovered ? 'hovered' : ''}`}>
         {/* All apps on the left */}

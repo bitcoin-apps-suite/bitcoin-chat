@@ -165,16 +165,12 @@ const Chat: React.FC<ChatProps> = ({
     <>
       {/* Main App Header */}
       <div style={{
-        position: 'fixed',
-        top: '40px', // Position right below PocBar
-        left: '260px', // Account for DevSidebar
-        right: tickerSidebarCollapsed ? '60px' : '280px',
-        padding: '12px 24px',
+        padding: '8px 20px',
         borderBottom: '1px solid rgba(100, 200, 255, 0.3)',
         background: 'linear-gradient(135deg, rgba(10, 20, 50, 0.8) 0%, rgba(20, 30, 60, 0.6) 100%)',
         backdropFilter: 'blur(20px)',
-        transition: 'right 0.3s ease',
-        zIndex: 1000
+        marginRight: tickerSidebarCollapsed ? '60px' : '280px',
+        transition: 'margin-right 0.3s ease'
       }}>
         <div style={{
           display: 'flex',
@@ -220,7 +216,7 @@ const Chat: React.FC<ChatProps> = ({
         </p>
       </div>
 
-      <div className="chat-container" style={{ marginTop: '80px' }}> {/* Account for fixed header height */}
+      <div className="chat-container">
       {/* Chat Header */}
       <div className="chat-header">
         <div className="chat-room-info">

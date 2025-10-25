@@ -85,9 +85,9 @@ const TickerSidebar: React.FC<TickerSidebarProps> = ({
 
     // Subscribe to price updates
     const subscription = PriceService.subscribeAll((updatedPrices) => {
-      // Get core token prices (BSV, BOS, and bChat)
+      // Get core token prices (BSV and bChat)
       const corePrices: TokenPrice[] = updatedPrices.filter(p => 
-        p.symbol === 'BSV' || p.symbol === 'BOS' || p.symbol === 'BCHAT'
+        p.symbol === 'BSV' || p.symbol === 'BCHAT'
       ).map(p => ({
         ...p,
         change24h: p.change_24h,

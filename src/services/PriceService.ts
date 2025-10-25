@@ -54,7 +54,6 @@ class PriceServiceClass {
     try {
       await Promise.all([
         this.fetchBSVPrice(),
-        this.fetchBOSPrice(),
         this.fetchBChatPrice(),
         this.fetchChatRoomPrices(),
       ]);
@@ -87,30 +86,6 @@ class PriceServiceClass {
     this.updatePrice('BSV', mockPrice);
   }
 
-  /**
-   * Fetch BOS (Bitcoin OS) token price
-   */
-  private async fetchBOSPrice() {
-    const currentPrice = this.prices.get('BOS');
-    const basePrice = 0.0125;
-    const fluctuation = (Math.random() - 0.5) * 0.0005; // +/- $0.00025
-    const newPrice = currentPrice ? currentPrice.price + fluctuation : basePrice + fluctuation;
-    
-    const mockPrice: TokenPrice = {
-      symbol: 'BOS',
-      name: 'Bitcoin OS Token',
-      price: newPrice,
-      price_usd: newPrice,
-      change_24h: (Math.random() - 0.5) * 0.002,
-      change_percent_24h: (Math.random() - 0.5) * 15,
-      volume_24h: 125000 + Math.random() * 30000,
-      market_cap: newPrice * 800000,
-      last_updated: new Date(),
-      source: 'Bitcoin OS Exchange'
-    };
-    
-    this.updatePrice('BOS', mockPrice);
-  }
 
   /**
    * Fetch bChat token price

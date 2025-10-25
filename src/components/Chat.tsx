@@ -162,7 +162,67 @@ const Chat: React.FC<ChatProps> = ({
   };
 
   return (
-    <div className="chat-container">
+    <>
+      {/* Main App Header */}
+      <div style={{
+        padding: '20px 40px',
+        borderBottom: '1px solid rgba(100, 200, 255, 0.3)',
+        background: 'linear-gradient(135deg, rgba(10, 20, 50, 0.8) 0%, rgba(20, 30, 60, 0.6) 100%)',
+        backdropFilter: 'blur(20px)',
+        marginLeft: '260px',
+        marginRight: tickerSidebarCollapsed ? '60px' : '280px',
+        transition: 'margin-right 0.3s ease'
+      }}>
+        <div style={{
+          display: 'flex',
+          alignItems: 'center',
+          gap: '12px',
+          marginBottom: '8px'
+        }}>
+          <div style={{
+            display: 'flex',
+            alignItems: 'center',
+            gap: '8px'
+          }}>
+            <div style={{
+              width: '32px',
+              height: '32px',
+              background: 'linear-gradient(135deg, #64c8ff 0%, #3b82f6 100%)',
+              borderRadius: '8px',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              fontSize: '18px',
+              fontWeight: '700',
+              color: '#ffffff'
+            }}>
+              💬
+            </div>
+            <span style={{
+              fontSize: '28px',
+              fontWeight: '700',
+              color: '#64c8ff',
+              letterSpacing: '0.5px'
+            }}>Bitcoin</span>
+            <span style={{
+              fontSize: '28px',
+              fontWeight: '700',
+              color: '#ffffff',
+              letterSpacing: '0.5px'
+            }}>Chat</span>
+          </div>
+        </div>
+        <p style={{
+          fontSize: '14px',
+          color: 'rgba(255, 255, 255, 0.7)',
+          margin: '0',
+          letterSpacing: '0.3px'
+        }}>
+          Tokenized chats with tradeable shareholder meeting value
+        </p>
+      </div>
+
+      <div className="chat-container">
       {/* Chat Header */}
       <div className="chat-header">
         <div className="chat-room-info">
@@ -310,6 +370,7 @@ const Chat: React.FC<ChatProps> = ({
         </div>
       </div>
     </div>
+    </>
   );
 };
 

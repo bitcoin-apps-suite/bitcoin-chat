@@ -1,8 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import ChatHeader from '@/components/ChatHeader';
-import Footer from '@/components/Footer';
+import MinimalDock from '@/components/MinimalDock';
 
 interface ChatToken {
   id: string;
@@ -89,11 +88,23 @@ export default function ExchangePage() {
   );
 
   return (
-    <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', paddingTop: '72px', background: '#0a0a0a' }}>
-      <ChatHeader />
-      
-      <main style={{ flex: 1, color: '#ffffff' }}>
-        <div style={{ maxWidth: '1400px', margin: '0 auto', padding: '40px 20px' }}>
+    <>
+      <MinimalDock currentApp="bitcoin-exchange" />
+      <div style={{ 
+        minHeight: '100vh', 
+        display: 'flex', 
+        flexDirection: 'column', 
+        background: 'linear-gradient(135deg, #0f0f23 0%, #1a1a2e 50%, #16213e 100%)',
+        color: '#ffffff'
+      }}>
+        <main style={{ 
+          flex: 1, 
+          paddingTop: '40px',
+          marginLeft: '260px', /* Space for DevSidebar */
+          marginRight: '60px', /* Space for collapsed TickerSidebar */
+          transition: 'margin 0.3s ease'
+        }}>
+        <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '40px 20px' }}>
           
           {/* Header */}
           <section style={{ marginBottom: '40px' }}>
@@ -101,7 +112,7 @@ export default function ExchangePage() {
               fontSize: '42px',
               fontWeight: '700',
               marginBottom: '16px',
-              background: 'linear-gradient(135deg, #ff6500 0%, #ff9500 100%)',
+              background: 'linear-gradient(135deg, #64c8ff 0%, #3b82f6 100%)',
               WebkitBackgroundClip: 'text',
               WebkitTextFillColor: 'transparent',
               backgroundClip: 'text'
@@ -120,7 +131,7 @@ export default function ExchangePage() {
             {/* Stats Bar */}
             <div style={{
               background: 'linear-gradient(135deg, #1a1a1a 0%, #111111 100%)',
-              border: '1px solid rgba(255, 101, 0, 0.2)',
+              border: '1px solid rgba(100, 200, 255, 0.3)',
               borderRadius: '12px',
               padding: '20px',
               display: 'grid',
@@ -163,8 +174,8 @@ export default function ExchangePage() {
                     onClick={() => setSelectedTab(tab)}
                     style={{
                       padding: '10px 20px',
-                      background: selectedTab === tab ? '#ff6500' : 'transparent',
-                      border: '1px solid rgba(255, 101, 0, 0.3)',
+                      background: selectedTab === tab ? '#64c8ff' : 'transparent',
+                      border: '1px solid rgba(100, 200, 255, 0.3)',
                       borderRadius: '6px',
                       color: selectedTab === tab ? '#ffffff' : 'rgba(255, 255, 255, 0.7)',
                       fontSize: '14px',
@@ -187,7 +198,7 @@ export default function ExchangePage() {
                   onChange={(e) => setSelectedCategory(e.target.value)}
                   style={{
                     background: '#1a1a1a',
-                    border: '1px solid rgba(255, 101, 0, 0.3)',
+                    border: '1px solid rgba(100, 200, 255, 0.3)',
                     borderRadius: '6px',
                     padding: '8px 12px',
                     color: '#ffffff',
@@ -206,13 +217,13 @@ export default function ExchangePage() {
           <section>
             <div style={{
               background: 'linear-gradient(135deg, #1a1a1a 0%, #111111 100%)',
-              border: '1px solid rgba(255, 101, 0, 0.2)',
+              border: '1px solid rgba(100, 200, 255, 0.3)',
               borderRadius: '12px',
               overflow: 'hidden'
             }}>
               {/* Table Header */}
               <div style={{
-                background: 'rgba(255, 101, 0, 0.1)',
+                background: 'rgba(100, 200, 255, 0.1)',
                 padding: '16px 20px',
                 display: 'grid',
                 gridTemplateColumns: '2fr 1fr 1fr 1fr 1fr 1fr 120px',
@@ -238,7 +249,7 @@ export default function ExchangePage() {
                   key={token.id}
                   style={{
                     padding: '20px',
-                    borderBottom: index < filteredTokens.length - 1 ? '1px solid rgba(255, 101, 0, 0.1)' : 'none',
+                    borderBottom: index < filteredTokens.length - 1 ? '1px solid rgba(100, 200, 255, 0.1)' : 'none',
                     display: 'grid',
                     gridTemplateColumns: '2fr 1fr 1fr 1fr 1fr 1fr 120px',
                     gap: '16px',
@@ -247,7 +258,7 @@ export default function ExchangePage() {
                     cursor: 'pointer'
                   }}
                   onMouseEnter={(e) => {
-                    e.currentTarget.style.background = 'rgba(255, 101, 0, 0.05)';
+                    e.currentTarget.style.background = 'rgba(100, 200, 255, 0.05)';
                   }}
                   onMouseLeave={(e) => {
                     e.currentTarget.style.background = 'transparent';
@@ -258,7 +269,7 @@ export default function ExchangePage() {
                     <div style={{
                       width: '40px',
                       height: '40px',
-                      background: 'linear-gradient(135deg, #ff6500 0%, #ff4500 100%)',
+                      background: 'linear-gradient(135deg, #64c8ff 0%, #3b82f6 100%)',
                       borderRadius: '8px',
                       display: 'flex',
                       alignItems: 'center',
@@ -310,7 +321,7 @@ export default function ExchangePage() {
                   {/* Action Buttons */}
                   <div style={{ display: 'flex', gap: '6px' }}>
                     <button style={{
-                      background: 'linear-gradient(135deg, #ff6500 0%, #ff4500 100%)',
+                      background: 'linear-gradient(135deg, #64c8ff 0%, #3b82f6 100%)',
                       border: 'none',
                       padding: '6px 12px',
                       borderRadius: '4px',
@@ -324,7 +335,7 @@ export default function ExchangePage() {
                     </button>
                     <button style={{
                       background: 'transparent',
-                      border: '1px solid rgba(255, 101, 0, 0.3)',
+                      border: '1px solid rgba(100, 200, 255, 0.3)',
                       padding: '6px 12px',
                       borderRadius: '4px',
                       color: 'rgba(255, 255, 255, 0.7)',
@@ -382,7 +393,7 @@ export default function ExchangePage() {
               ].map((item, index) => (
                 <div key={index} style={{
                   background: 'linear-gradient(135deg, #1a1a1a 0%, #111111 100%)',
-                  border: '1px solid rgba(255, 101, 0, 0.2)',
+                  border: '1px solid rgba(100, 200, 255, 0.3)',
                   borderRadius: '12px',
                   padding: '30px',
                   textAlign: 'center'
@@ -390,7 +401,7 @@ export default function ExchangePage() {
                   <div style={{
                     width: '50px',
                     height: '50px',
-                    background: 'linear-gradient(135deg, #ff6500 0%, #ff4500 100%)',
+                    background: 'linear-gradient(135deg, #64c8ff 0%, #3b82f6 100%)',
                     borderRadius: '50%',
                     display: 'flex',
                     alignItems: 'center',
@@ -401,16 +412,15 @@ export default function ExchangePage() {
                   }}>
                     {item.step}
                   </div>
-                  <h3 style={{ color: '#ff6500', fontSize: '18px', marginBottom: '12px' }}>{item.title}</h3>
+                  <h3 style={{ color: '#64c8ff', fontSize: '18px', marginBottom: '12px' }}>{item.title}</h3>
                   <p style={{ color: 'rgba(255, 255, 255, 0.7)', fontSize: '14px', lineHeight: '1.5' }}>{item.desc}</p>
                 </div>
               ))}
             </div>
           </section>
         </div>
-      </main>
-      
-      <Footer />
-    </div>
+        </main>
+      </div>
+    </>
   );
 }

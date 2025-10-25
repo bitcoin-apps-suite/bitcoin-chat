@@ -162,21 +162,23 @@ const Chat: React.FC<ChatProps> = ({
   };
 
   return (
-    <>
+    <div style={{ marginTop: '-72px' }}> {/* Offset DevLayout's paddingTop */}
       {/* Main App Header */}
       <div style={{
-        padding: '8px 20px',
+        padding: '12px 0',
         borderBottom: '1px solid rgba(100, 200, 255, 0.3)',
         background: 'linear-gradient(135deg, rgba(10, 20, 50, 0.8) 0%, rgba(20, 30, 60, 0.6) 100%)',
         backdropFilter: 'blur(20px)',
         marginRight: tickerSidebarCollapsed ? '60px' : '280px',
-        transition: 'margin-right 0.3s ease'
+        transition: 'margin-right 0.3s ease',
+        textAlign: 'center'
       }}>
         <div style={{
           display: 'flex',
           alignItems: 'center',
           gap: '8px',
-          marginBottom: '4px'
+          marginBottom: '4px',
+          justifyContent: 'center'
         }}>
           <div style={{
             width: '28px',
@@ -364,7 +366,7 @@ const Chat: React.FC<ChatProps> = ({
         </div>
       </div>
     </div>
-    </>
+    </div>
   );
 };
 

@@ -165,7 +165,7 @@ const Chat: React.FC<ChatProps> = ({
     <>
       {/* Main App Header */}
       <div style={{
-        padding: '20px 40px',
+        padding: '16px 0',
         borderBottom: '1px solid rgba(100, 200, 255, 0.3)',
         background: 'linear-gradient(135deg, rgba(10, 20, 50, 0.8) 0%, rgba(20, 30, 60, 0.6) 100%)',
         backdropFilter: 'blur(20px)',
@@ -176,49 +176,46 @@ const Chat: React.FC<ChatProps> = ({
         <div style={{
           display: 'flex',
           alignItems: 'center',
-          gap: '12px',
-          marginBottom: '8px'
+          gap: '8px',
+          marginBottom: '4px',
+          paddingLeft: '24px'
         }}>
           <div style={{
+            width: '28px',
+            height: '28px',
+            background: 'linear-gradient(135deg, #64c8ff 0%, #3b82f6 100%)',
+            borderRadius: '6px',
             display: 'flex',
             alignItems: 'center',
-            gap: '8px'
+            justifyContent: 'center',
+            fontSize: '16px',
+            fontWeight: '400',
+            color: '#ffffff'
           }}>
-            <div style={{
-              width: '32px',
-              height: '32px',
-              background: 'linear-gradient(135deg, #64c8ff 0%, #3b82f6 100%)',
-              borderRadius: '8px',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              fontSize: '18px',
-              fontWeight: '700',
-              color: '#ffffff'
-            }}>
-              💬
-            </div>
-            <span style={{
-              fontSize: '28px',
-              fontWeight: '700',
-              color: '#64c8ff',
-              letterSpacing: '0.5px'
-            }}>Bitcoin</span>
-            <span style={{
-              fontSize: '28px',
-              fontWeight: '700',
-              color: '#ffffff',
-              letterSpacing: '0.5px'
-            }}>Chat</span>
+            💬
           </div>
+          <span style={{
+            fontSize: '24px',
+            fontWeight: '300',
+            color: '#64c8ff',
+            letterSpacing: '0.5px'
+          }}>Bitcoin</span>
+          <span style={{
+            fontSize: '24px',
+            fontWeight: '300',
+            color: '#ffffff',
+            letterSpacing: '0.5px'
+          }}>Chat</span>
         </div>
         <p style={{
-          fontSize: '14px',
+          fontSize: '13px',
           color: 'rgba(255, 255, 255, 0.7)',
           margin: '0',
-          letterSpacing: '0.3px'
+          letterSpacing: '0.3px',
+          paddingLeft: '24px',
+          fontWeight: '300'
         }}>
-          Tokenized chats with tradeable shareholder meeting value
+          Paid, tokenised shareholder meetings. Trade access, value and community on Bitcoin
         </p>
       </div>
 

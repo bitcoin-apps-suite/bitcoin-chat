@@ -434,6 +434,7 @@ a {
 
 .message-input-area {
   padding: 16px 20px;
+  margin-bottom: 60px; /* Add space to avoid dock overlap */
   background: rgba(10, 20, 50, 0.8);
   border-top: 1px solid rgba(100, 200, 255, 0.3);
 }

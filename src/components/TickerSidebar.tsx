@@ -85,9 +85,9 @@ const TickerSidebar: React.FC<TickerSidebarProps> = ({
 
     // Subscribe to price updates
     const subscription = PriceService.subscribeAll((updatedPrices) => {
-      // Get core token prices (BSV and BOS)
+      // Get core token prices (BSV, BOS, and bChat)
       const corePrices: TokenPrice[] = updatedPrices.filter(p => 
-        p.symbol === 'BSV' || p.symbol === 'BOS'
+        p.symbol === 'BSV' || p.symbol === 'BOS' || p.symbol === 'BCHAT'
       ).map(p => ({
         ...p,
         change24h: p.change_24h,
@@ -189,7 +189,7 @@ const TickerSidebar: React.FC<TickerSidebarProps> = ({
   return (
     <div className={`ticker-sidebar ${isCollapsed ? 'collapsed' : ''}`}>
       <div className="ticker-header">
-        <h3>$bOS Market</h3>
+        <h3>$bChat Market</h3>
         <div className="ticker-header-controls">
           <button 
             className="ticker-toggle"

@@ -2,7 +2,6 @@
 
 import React, { useState, useEffect, useRef } from 'react';
 import { Send, Paperclip, Phone, Video, Users, Settings } from 'lucide-react';
-import ChatContracts from './ChatContracts';
 
 interface Message {
   id: string;
@@ -170,7 +169,13 @@ const Chat: React.FC<ChatProps> = ({
           <h2>#{roomId}</h2>
           <span className="user-count">{users.filter(u => u.status === 'online').length} online</span>
         </div>
-        <div className="chat-actions">
+        <div 
+          className="chat-actions"
+          style={{
+            marginRight: tickerSidebarCollapsed ? '60px' : '280px',
+            transition: 'margin-right 0.3s ease'
+          }}
+        >
           <button className="chat-action-btn" title="Voice Call">
             <Phone size={18} />
           </button>
@@ -228,7 +233,7 @@ const Chat: React.FC<ChatProps> = ({
                   <div className="user-avatar" style={{ backgroundColor: getUserColor(user.name) }}>
                     {user.name[0].toUpperCase()}
                   </div>
-                  <span className="user-name">{user.name}</span>
+                  <span className="user-name">${user.name}</span>
                   <div className={`status-indicator ${user.status}`}></div>
                 </div>
               ))}
@@ -237,7 +242,13 @@ const Chat: React.FC<ChatProps> = ({
         </div>
 
         {/* Messages Area */}
-        <div className="messages-area">
+        <div 
+          className="messages-area"
+          style={{
+            marginRight: tickerSidebarCollapsed ? '60px' : '280px',
+            transition: 'margin-right 0.3s ease'
+          }}
+        >
           <div className="messages-list">
             {messages.map((message) => (
               <div 
@@ -250,7 +261,7 @@ const Chat: React.FC<ChatProps> = ({
                 <div className="message-content">
                   <div className="message-header">
                     <span className="message-user" style={{ color: getUserColor(message.user) }}>
-                      {message.user}
+                      ${message.user}
                     </span>
                     <span className="message-time">{formatTime(message.timestamp)}</span>
                   </div>
@@ -297,23 +308,6 @@ const Chat: React.FC<ChatProps> = ({
             </div>
           </div>
         </div>
-        
-        {/* Right Sidebar - Chat Contracts */}
-        <ChatContracts 
-          tickerSidebarOpen={!tickerSidebarCollapsed}
-          onJoinChat={(chatId) => {
-            console.log('Joining chat:', chatId);
-            // TODO: Implement chat joining logic
-          }}
-          onImportShare={(share) => {
-            console.log('Importing share:', share);
-            // TODO: Implement share import logic
-          }}
-          onCreateChat={(topic) => {
-            console.log('Creating chat for topic:', topic);
-            // TODO: Implement chat creation logic
-          }}
-        />
       </div>
     </div>
   );
